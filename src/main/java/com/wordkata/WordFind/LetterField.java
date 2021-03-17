@@ -4,6 +4,7 @@ public class LetterField {
 	String[] WordList;
 	String[] LETTERS= {};//LETTERS
 	int fieldSize;
+
 	
 	LetterField(String[] list){
 		this.WordList=list;
@@ -14,7 +15,7 @@ public class LetterField {
 		return null;
 	}
 	
-	public int calcWordSize() {
+	public int calcLargestWordSize() {
 		int size=0;
 		for(String word:WordList) {
 			if(word.length()>size) {
@@ -26,7 +27,7 @@ public class LetterField {
 	
 	
 	public void calcFieldSize() {
-		int size = calcWordSize();
+		int size = calcLargestWordSize();
 		if(size+(size/2)>8) {
 			size = size+(size/2);
 		} else {
@@ -38,6 +39,17 @@ public class LetterField {
 	public int getFieldSize() {
 		return fieldSize;
 	}
+	
+	public int generateRandomWordPosition(String word) {
+		//generates random number to position word
+		int rand = (int) Math.random()* fieldSize;
+		if(rand>fieldSize-word.length()) {
+			generateRandomWordPosition(word);
+		} 
+		return rand;
+	}
+	
+	
 	
 
 }
