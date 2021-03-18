@@ -2,6 +2,8 @@ package com.wordkata.WordFind;
 
 import static org.junit.Assert.*;
 
+import java.nio.charset.Charset;
+
 import org.junit.Test;
 
 /**
@@ -50,6 +52,40 @@ public class AppTest
     	field.calcFieldSize();
     	int rand =field.generateRandomWordPosition("Pear");
     	assertTrue(rand <= 4);
+  
+    }
+    
+    @Test
+    public void secondTestWordPosition() {
+    	String[] list = {"Pear"};
+    	LetterField field = new LetterField(list);
+    	field.calcFieldSize();
+    	int rand =field.generateRandomWordPositionCommonVector();
+    	assertTrue(rand != 8 && rand >=0);
+    	
+    }
+    
+    
+    @Test
+    public void firstTestLetterFind() {
+    	char[] list = {'a', 'b','c','d','e'};
+    	LetterFinder LF = new LetterFinder('c');
+    	assertEquals(2, LF.search(list));
+    }
+    
+    @Test
+    public void secondTestLetterFind() {
+    	char[] list = {'a', 'b','c','d','e'};
+    	LetterFinder LF = new LetterFinder('z');
+    	assertEquals(-1, LF.search(list));
+    }
+    
+    @Test
+    public void thirdTestLetterFind() {
+    	char[] list = {'a', 'b','c','d','e'};
+    	LetterFinder LF = new LetterFinder('c');
+    	int ans = LF.search(list);
+    	assertFalse(ans==0 );
     }
     
 }

@@ -42,11 +42,21 @@ public class LetterField {
 	
 	public int generateRandomWordPosition(String word) {
 		//generates random number to position word
-		int rand = (int) Math.random()* fieldSize;
+		
+		int rand = (int) (Math.random() * fieldSize-word.length());
+		
 		if(rand>fieldSize-word.length()) {
 			generateRandomWordPosition(word);
 		} 
-		return rand;
+		return Math.abs(rand);
+	}
+	
+	public int generateRandomWordPositionCommonVector() {
+		
+		int rand = (int) (Math.random()* fieldSize);
+		
+		System.out.println(Math.abs(rand));
+		return Math.abs(rand);
 	}
 	
 	
