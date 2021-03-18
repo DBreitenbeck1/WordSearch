@@ -52,10 +52,7 @@ public class LetterField {
 	}
 	
 	public int generateRandomWordPositionCommonVector() {
-		
 		int rand = (int) (Math.random()* fieldSize);
-		
-		System.out.println(Math.abs(rand));
 		return Math.abs(rand);
 	}
 	
