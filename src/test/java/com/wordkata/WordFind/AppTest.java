@@ -110,5 +110,55 @@ public class AppTest
     	assertEquals(4, LF.searchNext(list, LF.searchFirst(list)));
     }
     
+    @Test
+    public void thirdTestNextLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'a', 'b','c','a', 'm', 'm', 'e','t'};
+    	assertEquals(5, LF.searchNext(list, LF.searchFirst(list)));
+    }
     
+    @Test
+    public void fourthTestNextLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'a', 'b','c','a', 'm', 'm', 'e'};
+    	assertEquals(5, LF.searchNext(list, LF.searchFirst(list)));
+    }
+    
+    @Test
+    public void fifthTestNextLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e','a', 'b','c','a', 'm', 'm', 'e'};
+    	assertEquals(-1, LF.searchNext(list, 0));
+    }
+    
+    
+    @Test
+    public void sixthTestNextLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e'};
+    	assertEquals(-1, LF.searchNext(list, LF.searchFirst(list)));
+    }
+    
+    @Test
+    public void firstTestLastLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e','a', 'b','c','d'};
+    	assertEquals(1, LF.searchLast(list));	
+    }
+    
+    @Test
+    public void secondTestLastLetterFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e', 'b','c','d'};
+    	assertEquals(-1, LF.searchLast(list));	
+    }
+    
+    /*  
+    @Test 
+    public void firstTestWordFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e','a', 'b','c','a', 'm', 'm', 'e'};
+    	assertEquals(-1, LF.findWord(list));
+    }
+    */
 }
