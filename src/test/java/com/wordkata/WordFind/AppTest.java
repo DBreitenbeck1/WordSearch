@@ -70,21 +70,21 @@ public class AppTest
     public void firstTestLetterFind() {
     	char[] list = {'a', 'b','c','d','e'};
     	LetterFinder LF = new LetterFinder("c");
-    	assertEquals(2, LF.searchFirst(list));
+    	assertEquals(2, LF.searchFirst(list,0));
     }
     
     @Test
     public void secondTestLetterFind() {
     	char[] list = {'a', 'b','c','d','e'};
     	LetterFinder LF = new LetterFinder("z");
-    	assertEquals(-1, LF.searchFirst(list));
+    	assertEquals(-1, LF.searchFirst(list,0));
     }
     
     @Test
     public void thirdTestLetterFind() {
     	char[] list = {'a', 'b','c','d','e'};
     	LetterFinder LF = new LetterFinder("c");
-    	int ans = LF.searchFirst(list);
+    	int ans = LF.searchFirst(list,0);
     	assertFalse(ans==0 );
     }
     
@@ -92,7 +92,7 @@ public class AppTest
     public void fourthTestLetterFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'a', 'b','c','d','e'};
-    	assertEquals(4, LF.searchFirst(list));
+    	assertEquals(4, LF.searchFirst(list,0));
     	
     }
     
@@ -107,21 +107,21 @@ public class AppTest
     public void secondTestNextLetterFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'a', 'b','c','e','m', 'm','a','t'};
-    	assertEquals(4, LF.searchNext(list, LF.searchFirst(list)));
+    	assertEquals(4, LF.searchNext(list, LF.searchFirst(list,0)));
     }
     
     @Test
-    public void thirdTestNextLetterFind() {
+    public void firstTestPrevLetterFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'a', 'b','c','a', 'm', 'm', 'e','t'};
-    	assertEquals(5, LF.searchNext(list, LF.searchFirst(list)));
+    	assertEquals(5, LF.searchPrev(list, LF.searchFirst(list,0)));
     }
     
     @Test
-    public void fourthTestNextLetterFind() {
+    public void secondTestPrevLetterFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'a', 'b','c','a', 'm', 'm', 'e'};
-    	assertEquals(5, LF.searchNext(list, LF.searchFirst(list)));
+    	assertEquals(5, LF.searchPrev(list, LF.searchFirst(list,0)));
     }
     
     @Test
@@ -136,7 +136,7 @@ public class AppTest
     public void sixthTestNextLetterFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'e'};
-    	assertEquals(-1, LF.searchNext(list, LF.searchFirst(list)));
+    	assertEquals(-1, LF.searchNext(list, LF.searchFirst(list,0)));
     }
     
     @Test
@@ -153,12 +153,12 @@ public class AppTest
     	assertEquals(-1, LF.searchLast(list));	
     }
     
-    /*  
-    @Test 
+      
+ /*   @Test 
     public void firstTestWordFind() {
     	LetterFinder LF = new LetterFinder("emma");
     	char[] list = {'e','a', 'b','c','a', 'm', 'm', 'e'};
-    	assertEquals(-1, LF.findWord(list));
+    	assertEquals("emma", LF.findWord(list));
     }
     */
 }
