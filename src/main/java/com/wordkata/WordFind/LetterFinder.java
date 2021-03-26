@@ -15,6 +15,7 @@ public class LetterFinder {
 		for(int i = initPos; i<list.length;i++) {
 			if(letters[0]==list[i]) {
 				position=i;
+				break;
 			}
 		}
 		return position;
@@ -72,27 +73,28 @@ public class LetterFinder {
 	
 	
 	
-	public String findWord(char[] list) {
+	public int findWord(char[] list) {
 		int initPos = 0;
 		int position = searchFirst(list,initPos);
-		String word="";
+		System.out.println(position);
+		int secondPosition =-1;
 		if(searchNext(list,position)!=-1) {
-			while(position!=-1) {
-				word+= list[position];
-				position=searchNext(list,position);
-				System.out.println(word);
+			secondPosition = searchNext(list,position);
+			System.out.println(secondPosition);
+			if(searchNext(list,secondPosition)!=-1) {
+				return position;
 			}
 		} else if(searchPrev(list,position)!=-1) {
-			while(position!=-1) {
-				word+= list[position];
-				position=searchPrev(list,position);
-				System.out.println(word);
+			secondPosition = searchPrev(list,position);
+			if(searchPrev(list,secondPosition)!=-1) {
+				return position;
 			}
+		} else {
+			return -1;
 		}
 		
-		
-		return word;
-		
+		System.out.println(position);
+		return -1;
 	}
 	
 

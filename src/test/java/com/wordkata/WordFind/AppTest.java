@@ -153,12 +153,20 @@ public class AppTest
     	assertEquals(-1, LF.searchLast(list));	
     }
     
-      
- /*   @Test 
+   /*   
+    @Test 
     public void firstTestWordFind() {
     	LetterFinder LF = new LetterFinder("emma");
-    	char[] list = {'e','a', 'b','c','a', 'm', 'm', 'e'};
-    	assertEquals("emma", LF.findWord(list));
+    	char[] list = {'e', 'm','a', 'b','c','a', 'm', 'm', 'e'};
+    	assertEquals(8, LF.findWord(list));
     }
     */
+    @Test 
+    public void secondTestWordFind() {
+    	LetterFinder LF = new LetterFinder("emma");
+    	char[] list = {'e','m','m','a', 'b','c','a', 'm', 'e'};
+    	assertEquals(0, LF.findWord(list));
+    }
+    
+    
 }
