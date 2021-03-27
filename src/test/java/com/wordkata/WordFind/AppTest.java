@@ -165,6 +165,31 @@ public class AppTest
     	assertEquals(5, nextPos);	
     }
     
-   
+  @Test
+  public void firstTestLastLetter() {
+	  char[] list = {'b','c','a','d','e'};
+  	LetterFinder LF = new LetterFinder("emma");
+  	int position = -1; 
+  	for(int i=0; i<list.length;i++) {
+  		if(LF.searchLast(i, list)!=-1) {
+  		position = LF.searchLast(i, list);
+  		}
+  	}
+  	assertEquals(2, position);
+  }
+  
+  
+  @Test
+  public void secondTestLastLetter() {
+	  char[] list = {'b','c','d','e','m','m'};
+  	LetterFinder LF = new LetterFinder("emma");
+  	int position = -1; 
+  	for(int i=0; i<list.length;i++) {
+  		if(LF.searchLast(i, list)!=-1) {
+  		position = LF.searchLast(i, list);
+  		}
+  	}
+  	assertEquals(-1, position);
+  }
     
 }
