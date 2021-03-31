@@ -1,12 +1,21 @@
 package com.wordkata.WordFind;
 
 public class WordGet {
-	String[] WordList;
+	String word;
+	LetterFinder LF ;
 	
 	
-	WordGet(String[] list){
-	this.WordList=list;
+	
+	WordGet(String word){
+	word=word.toLowerCase();
+	this.word=word;
+	this.LF = new LetterFinder(word);
 	}
+	
+	public String getWord() {
+		return this.word;
+	}
+	
 	
 	
 	

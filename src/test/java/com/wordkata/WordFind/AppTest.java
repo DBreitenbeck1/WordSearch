@@ -191,5 +191,13 @@ public class AppTest
   	}
   	assertEquals(-1, position);
   }
+  
+  @Test
+  public void firstTestWord() {
+	  String word="Emma";
+	  WordGet WG=new WordGet("Emma");
+	  
+	  assertEquals("emma", WG.getWord());
+  }
     
 }
