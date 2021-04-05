@@ -1,63 +1,87 @@
 package com.wordkata.WordFind;
 
 public class LetterFinder {
-	String word;
-	char [] letters;
-	int firstLetterPos;
+	private String word;
+	private char [] letters;
+	private int firstLetterPos;
+	private char[] foundLetters;
 	
 	LetterFinder(String word){
 		this.word = word.toLowerCase();
+		//turn word into a list of letters
 		letters = word.toCharArray();
+		//create a blank list of letters the same length
+		foundLetters = new char[letters.length];
 	}
 	
-	public int searchFirst(int pos, char[] list) {
-		
+	
+	public int searchLetter(int pos, char[]list, int let) {
 		
 		int position=-1;
-		if (letters[0] == list[pos]) {
+		if (letters[let] == list[pos]) {
 			position=pos;
+			
 		}
 	
 		return position;
 	}
 	
-	public int searchLast(int pos, char[] list) {
-		int position=-1;
-		if (letters[letters.length-1] == list[pos]) {
-			position=pos;
-		}
-	
-		return position;
-		
+	public void addLetter(char letter, int pos) {
+		foundLetters[pos]=letter;
 	}
 	
 	
-	public int searchNext(char[] list, int position, int letter) {
-		int secondPos=-1;
-			if(position+1 < list.length && list[position+1]==letters[letter]) {
-					secondPos=position+1;
-				} 
-		
-		return secondPos;
+	public void clearLetters() {
+		this.foundLetters=new char[this.letters.length];
 	}
 	
-	public int searchPrev(char[] list, int position) {
-		int secondPos=-1;
-			if(position-1 > -1 && list[position-1]==letters[1]) {
-				secondPos=position-1;
+	public Boolean checkLetters() {
+		boolean match = false;
+		for(int i = 0; i<letters.length;i++) {
+			if(letters[i]!=foundLetters[i]) {
+				return false;
+			} else {
+				match=true;
 			}
-			return secondPos;
+		}
+		return match;
+	}
+
+		
+	
+	public char[] getFoundLetters() {
+		return foundLetters;
+	}
+	
+	public char[] getLetters() {
+		return letters;
 	}
 	
 	
 	
 	
-	public String wordForward(char[] list) {
-		
-		
-		
-		
-		return null;
+	
+	public int[] wordForward(char[] list, int pos) {
+		int [] positions = new int[letters.length]; 
+    	int letter = 0;
+		for(int i = pos; i<list.length;i++) {
+			int ans=searchLetter(i, list, letter);
+				if(ans !=-1) {
+					positions[letter] = ans;
+		    		addLetter(list[ans], letter);
+		    		letter++;
+		    			if (checkLetters()) {
+						return positions;
+						}
+		    		}
+	    		else{	
+	    			clearLetters();
+	    			positions = new int[letters.length]; 	
+					return positions;
+					}	
+			}
+		return positions;
+	
 	}
 	
 	
