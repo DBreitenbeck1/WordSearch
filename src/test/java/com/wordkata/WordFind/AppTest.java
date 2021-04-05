@@ -210,7 +210,7 @@ public class AppTest
    
     
     
-  @Test //assert success
+  @Test //first test Forward
   public void firstTestWord() {
 	char[] list = {'a', 'b','c','d','e','m','m','a'};
   	LetterFinder LF = new LetterFinder("emma");
@@ -241,8 +241,87 @@ public class AppTest
   	assertFalse(positions[0]== positions[positions.length-1]);
   }
   
+  @Test //test inside a for loop
+  public void fourthTestWord() {
+	char[] list = {'a', 'b','c','d','e','m','m','a','t'};
+  	LetterFinder LF = new LetterFinder("emma");
+	int [] positions = new int[LF.getLetters().length];
+	int count=0;
+  	for(int i = 0; i<list.length;i++) {
+  
+  		if(LF.checkLetters()!=true) {
+  		positions = LF.wordForward(list, i);
+  		} else {
+  			break;
+  		}
+		
+  	}
+  	/*for (int p: positions) {
+  		System.out.println(p);
+  	}*/
+  	assertFalse(positions[0]== positions[positions.length-1]);
+  }
   
   
+  @Test //fail inside a for loop
+  public void fifthTestWord() {
+	char[] list = {'a', 'b','c','d','e','m','m','d', 'a','t'};
+  	LetterFinder LF = new LetterFinder("emma");
+	int [] positions = new int[LF.getLetters().length];
+	int count=0;
+  	for(int i = 0; i<list.length;i++) {
+  
+  		if(LF.checkLetters()!=true) {
+  		positions = LF.wordForward(list, i);
+  		} else {
+  			break;
+  		}
+		
+  	}
+  	/*for (int p: positions) {
+  		System.out.println(p);
+  	}*/
+  	assertTrue(positions[0]== positions[positions.length-1]);
+  }
+  
+  
+  @Test //word backwards
+  public void firstTestBackwards() {
+		char[] list = {'a', 'b','c','d','a','m','m','e'};
+	  	LetterFinder LF = new LetterFinder("emma");
+	  	int [] positions = LF.wordBackward(list, 7);
+	 
+	  	assertEquals(4, positions[3]);
+  }
+  
+  @Test //backwards failure
+  public void secondTestBackwards() {
+		char[] list = {'a', 'b','c','d','a', 'f','m','m','e'};
+	  	LetterFinder LF = new LetterFinder("emma");
+	  	int [] positions = LF.wordBackward(list, 8);
+	 
+	  	assertTrue(positions[0]== positions[positions.length-1]);
+  }
+  
+  @Test //backwards inside loop
+  public void thirdTestBackwards() {
+	  char[] list = {'a', 'b','c','a','m','m','e', 'a','t'};
+	  	LetterFinder LF = new LetterFinder("emma");
+		int [] positions = new int[LF.getLetters().length];
+		int count=0;
+	  	for(int i = 0; i<list.length;i++) {
+	  		if(LF.checkLetters()!=true) {
+	  		positions = LF.wordBackward(list, i);
+	  		} else {
+	  			break;
+	  		}	
+	  	}
+	  	for (int p: positions) {
+	  		System.out.println(p);
+	  	}
+	  
+		assertEquals(6, positions[0]);
+  }
   
     
 }
