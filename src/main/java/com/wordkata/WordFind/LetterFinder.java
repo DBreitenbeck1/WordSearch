@@ -14,15 +14,20 @@ public class LetterFinder {
 		foundLetters = new char[letters.length];
 	}
 	
+	public int firstLetter(int pos, char[]list) {
+		int position=-1;
+		if (letters[0] == list[pos]) {
+			position=pos;	
+		}
+		return position;
+	}
+	
 	
 	public int searchLetter(int pos, char[]list, int let) {
-		
 		int position=-1;
 		if (letters[let] == list[pos]) {
-			position=pos;
-			
+			position=pos;	
 		}
-	
 		return position;
 	}
 	

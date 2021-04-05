@@ -323,5 +323,29 @@ public class AppTest
 		assertEquals(6, positions[0]);
   }
   
+  
+  @Test //First Letter anchor
+  public void firstFirstLetter() {
+	  char[] list = {'a', 'b','c','a','m','m','e', 'a','t'};
+	  	LetterFinder LF = new LetterFinder("emma");
+		int [] positions = new int[LF.getLetters().length];
+		int count=0;
+	  	for(int i = 0; i<list.length;i++) {
+	  		int firstLetter = LF.firstLetter(i, list);
+	  		if (firstLetter!=-1) {
+	  			
+	  		if(LF.checkLetters()!=true) {
+	  		positions = LF.wordBackward(list, firstLetter);
+	  		} else {
+	  			break;
+	  		}	
+	  		}
+	  	}
+	  	for (int p: positions) {
+	  		System.out.println(p);
+	  	}
+	  
+		assertEquals(6, positions[0]);
+  }
     
 }
