@@ -6,6 +6,9 @@ import java.nio.charset.Charset;
 
 import org.junit.Test;
 
+import com.wordkata.WordFindSearches.ForwardSearch;
+import com.wordkata.WordFindSearches.Search;
+
 /**
  * Unit test for simple App.
  */
@@ -317,7 +320,7 @@ public class AppTest
 	  		}	
 	  	}
 	  	for (int p: positions) {
-	  		System.out.println(p);
+	  	//	System.out.println(p);
 	  	}
 	  
 		assertEquals(6, positions[0]);
@@ -326,7 +329,7 @@ public class AppTest
   
   @Test //First Letter anchor
   public void firstFirstLetter() {
-	  char[] list = {'a', 'b','c','a','m','m','e', 'a','t'};
+	  char[] list = {'a','b','c','a','m','m','e', 'a','t'};
 	  	LetterFinder LF = new LetterFinder("emma");
 		int [] positions = new int[LF.getLetters().length];
 		int count=0;
@@ -342,10 +345,72 @@ public class AppTest
 	  		}
 	  	}
 	  	for (int p: positions) {
-	  		System.out.println(p);
+	  	//	System.out.println(p);
 	  	}
 	  
 		assertEquals(6, positions[0]);
   }
+  
+  @Test
+  public void scrollField() {
+	  char[][] list={{'1', '2'},
+			  {'a','b','c', 'e','m','m','a'},{'d','g','c'}};
+	  Search search = new ForwardSearch(list,"emma");
+	search.findList(2);
+	 char[] newList = ((ForwardSearch) search).getList();
+	 //System.out.println(((ForwardSearch) search).getList());
+	  char[] check = {'d','g','c'};
+	//  System.out.println(check);
+	 assertTrue(newList[2]==check[2]);
+  }
+  
+  
+  @Test
+  public void SearchObjectFirstLetter() {
+	  char[][] list={{'1', '2'},
+			  {'a','b','c', 'e','m','m','a'},{'d','g','c'}};
+	  Search search = new ForwardSearch(list,"emma");
+	 
+	 search.findFirstLetter(list[1],0);
+	// System.out.println(search.getYpos());
+	 assertEquals(3,search.getYpos());
+  }
+  
+  
+  
+  @Test
+  public void forwardSearchObjectFirstPos() {
+	  char[][] list={{'1'},{'a','b','c', 'e','m','m','a'}};
+	  Search search = new ForwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((ForwardSearch) search).search(1);
+	  
+	  assertEquals(3,positions[0]);
+  }
+  
+  @Test
+  public void forwardSearchObjectSecondPos() {
+	  char[][] list={{'1'},{'a','b','c', 'e','m','m','a'}};
+	  Search search = new ForwardSearch(list,"emma");
+	  
+
+	  int[] positions = ((ForwardSearch) search).search(1);
+	  
+	  
+	  assertEquals(6,positions[1]);
+  }
+  
+  @Test
+  public void forwardSearchObjectFail() {
+	  char[][] list={{'1'},{'a','b','c', 'e','m','a'}};
+	  Search search = new ForwardSearch(list,"emma");
+	 
+
+	  int[] positions = ((ForwardSearch) search).search(1);
+	  
+	  assertEquals(-1,positions[0]);
+  }
+  
     
 }

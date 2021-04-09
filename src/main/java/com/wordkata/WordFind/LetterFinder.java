@@ -63,9 +63,6 @@ public class LetterFinder {
 	}
 	
 	
-	
-	
-	
 	public int[] wordForward(char[] list, int pos) {
 		int [] positions = new int[letters.length]; 
     	int letter = 0;
@@ -93,14 +90,12 @@ public class LetterFinder {
 	public int[] wordBackward(char[] list, int pos) {
 		int [] positions = new int[letters.length]; 
     	int letter = 0;
-    	int count= 0;
 		for(int i = pos; i>=0;i--) {
 			int ans=searchLetter(i, list, letter);
 				if(ans !=-1) {
 					positions[letter] = ans;
 		    		addLetter(list[ans], letter);
 		    		letter++;
-		    		count++;
 		    			if (checkLetters()) {
 						return positions;
 						}
