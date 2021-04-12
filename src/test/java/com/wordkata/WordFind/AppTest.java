@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 
 import org.junit.Test;
 
+import com.wordkata.WordFindSearches.BackwardSearch;
 import com.wordkata.WordFindSearches.ForwardSearch;
 import com.wordkata.WordFindSearches.Search;
 
@@ -408,6 +409,62 @@ public class AppTest
 	 
 
 	  int[] positions = ((ForwardSearch) search).search(1);
+	  
+	  assertEquals(-1,positions[0]);
+  }
+  
+  @Test
+  public void forwardSearchObjectSecondPass() {
+	  char[][] list={{'1'},{'a','e','m','b','c','e','m','m','a'}};
+	  Search search = new ForwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((ForwardSearch) search).search(1);
+	  
+	  assertEquals(5,positions[0]);
+  }
+  
+  @Test
+  public void backwardSearchFirstPos() {
+	  char[][] list={{'1'},{'a','b','c', 'a','m','m','e','t'}};
+	  Search search = new BackwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((BackwardSearch) search).search(1);
+	  
+	  assertEquals(6,positions[0]);
+  }
+  
+  @Test
+  public void backwardSearchSecondPos() {
+	  char[][] list={{'1'},{'a','b','c', 'a','m','m','e','t'}};
+	  Search search = new BackwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((BackwardSearch) search).search(1);
+	  
+	  assertEquals(3,positions[1]);
+  }
+  
+  @Test
+  public void backwardSearchObjectSecondPass() {
+	  char[][] list={{'1'},{'a','m','e','b','c','a','m','m','e','t'}};
+	  Search search = new BackwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((BackwardSearch) search).search(1);
+	  
+	  assertEquals(8,positions[0]);
+  }
+  
+  
+  @Test
+  public void backwardSearchObjectFail() {
+	  char[][] list={{'1'},{'a','m','e','b','c','a','m','e','t'}};
+	  Search search = new BackwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((BackwardSearch) search).search(1);
 	  
 	  assertEquals(-1,positions[0]);
   }
