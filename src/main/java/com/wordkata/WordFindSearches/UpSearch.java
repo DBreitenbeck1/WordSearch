@@ -45,8 +45,11 @@ public class UpSearch extends Search {
 			}
     		findFirstLetter(list,firstLetterPos);
     	}
-    	positions[0] = -1;
-		return positions;
+    	for(int i =0; i<co.length;i++){
+    		co[i]=-1;
+    	}
+    	this.setCoordintates(givePositions(-1,-1,-1,-1));
+		return co;
 		
 	}
 	

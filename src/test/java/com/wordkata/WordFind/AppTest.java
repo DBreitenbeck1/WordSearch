@@ -10,6 +10,7 @@ import com.wordkata.WordFindSearches.BackwardSearch;
 import com.wordkata.WordFindSearches.DownSearch;
 import com.wordkata.WordFindSearches.ForwardSearch;
 import com.wordkata.WordFindSearches.Search;
+import com.wordkata.WordFindSearches.UpForwardSearch;
 import com.wordkata.WordFindSearches.UpSearch;
 
 /**
@@ -434,11 +435,11 @@ public class AppTest
 
 	  int[] positions = ((ForwardSearch) search).search(1);
 	  String [] coords = search.givePositions(positions[0], search.getYpos(), positions[1], search.getYpos());
-	
+	/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  
 	  assertEquals("5,1",coords[0]);
   }
@@ -502,11 +503,11 @@ public class AppTest
 	  int[] positions = ((UpSearch) search).search(2);
 	  
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-			
+		/*	
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  assertEquals("2,0",coords[1]);
 	  
   }
@@ -525,11 +526,11 @@ public class AppTest
 	  int[] positions = ((UpSearch) search).search(3);
 	  
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		
+		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  assertEquals("2,0",coords[1]);
 	  
   }
@@ -550,11 +551,11 @@ public class AppTest
 	  int[] positions = ((UpSearch) search).search(4);
 	   
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		
+		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  assertEquals("2,1",coords[1]);
 	  
   }
@@ -592,11 +593,11 @@ public class AppTest
 	  int[] positions = ((DownSearch) search).search(0);
 	  
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		
+		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	 */ 
 	  assertEquals("2,0",coords[0]);
 	  
   }
@@ -617,11 +618,11 @@ public class AppTest
 	  int[] positions = ((DownSearch) search).search(0);
 	  
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		
+		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  assertEquals("2,0",coords[0]);
 	  
   }
@@ -640,13 +641,81 @@ public class AppTest
 	  int[] positions = ((DownSearch) search).search(0);
 	  
 	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		
+		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
-	  
+	  */
 	  assertEquals(-1,positions[0]);
 	  
+  }
+  
+  @Test
+  public void UpFowardSearchFirstTest() {
+	  char[][]list= {
+			  {'e','e','e','a'},
+			  {'a','c','m','b'},
+	  		  {'a','m','d','b'},
+			  {'e','e','x','b'}
+	  };
+	  
+	  Search search = new UpForwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpForwardSearch) search).search(3);
+	 /* 
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+	  */
+	  assertEquals(0,positions[0]);
+  }
+  
+  @Test
+  public void UpFowardSearchSecondTest() {
+	  char[][]list= {
+			  {'e','e','e','d','a'},
+			  {'a','m','m','m','c'},
+	  		  {'a','m','m','b','f'},
+			  {'e','e','x','b','t'}, 
+	  };
+	  
+ Search search = new UpForwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpForwardSearch) search).search(3);
+	 /* 
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+	  */
+	  assertEquals(1,positions[0]);
+  }
+  
+  @Test
+  public void UpFowardSearchFailTest() {
+	  char[][]list= {
+			  {'e','e','e','d','c'},
+			  {'a','m','m','m','c'},
+	  		  {'a','m','m','b','f'},
+			  {'e','e','x','b','t'} 
+	  };
+	  
+	  Search search = new UpForwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpForwardSearch) search).search(3);
+/*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  System.out.println(search.getXpos());
+	  */
+	  assertEquals(-1,positions[0]);
   }
   
   

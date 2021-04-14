@@ -5,6 +5,7 @@ public abstract class Search {
 	char[][] field;
 	char[]foundLetters;
 	char[]list;
+	private String[] coordinates;
 	int xpos;
 	int ypos;
 	
@@ -83,6 +84,14 @@ public abstract class Search {
 		String endPos = String.valueOf(x2) + "," + String.valueOf(y2);
 		String [] positions = {startPos, endPos};
 		return positions;
+	}
+	
+	public void setCoordintates(String[] coords) {
+		this.coordinates=coords;
+	}
+	
+	public String[] getCoordinates() {
+		return coordinates;
 	}
 	
 	public void setXpos(int row) {
