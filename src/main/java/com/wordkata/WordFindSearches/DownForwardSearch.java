@@ -1,12 +1,11 @@
 package com.wordkata.WordFindSearches;
 
-public class UpForwardSearch extends Search {
+public class DownForwardSearch extends Search {
 
-	public UpForwardSearch(char[][] field, String word) {
+	public DownForwardSearch(char[][] field, String word) {
 		super(field, word);
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public int[] search(int row) {
 		findList(row);
@@ -23,7 +22,8 @@ public class UpForwardSearch extends Search {
     	while (this.xpos!=-1) {
     		firstLetterPos=xpos+1;
     		xTraject=xpos;
-    		for(int i = ypos; i>-1;i--) {
+    		for(int i = ypos; i<field.length;i++) {
+    			
     			int ans=searchLetter(xTraject, field[i], letter);
 				if(ans !=-1) {
 					ypositions[letter] = i;
@@ -47,7 +47,7 @@ public class UpForwardSearch extends Search {
 							return co;
 						}
 		    	xTraject=(xTraject+1<list.length)? xTraject+1:xTraject;		
-		    		    
+		    	
 				}else{	
 	    			clearLetters();
 	    			letter=0;
@@ -72,5 +72,6 @@ public class UpForwardSearch extends Search {
 	public char[] getList() {
 		return this.list;
 	}
+	
 	
 }

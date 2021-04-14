@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import org.junit.Test;
 
 import com.wordkata.WordFindSearches.BackwardSearch;
+import com.wordkata.WordFindSearches.DownForwardSearch;
 import com.wordkata.WordFindSearches.DownSearch;
 import com.wordkata.WordFindSearches.ForwardSearch;
 import com.wordkata.WordFindSearches.Search;
@@ -718,5 +719,123 @@ public class AppTest
 	  assertEquals(-1,positions[0]);
   }
   
+  @Test
+  public void UpFowardSearchFailSecondTest() {
+	  char[][]list= {
+			  {'e','e','e','d','m'},
+			  {'a','m','m','m','c'},
+	  		  {'a','m','e','b','f'},
+			  {'e','e','x','b','t'} 
+	  };
+	  
+	  Search search = new UpForwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpForwardSearch) search).search(2);
+/*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  System.out.println(search.getXpos());
+	  */
+	  assertEquals(-1,positions[0]);
+  }
+  
+  @Test 
+  public void DownForwardSearchFirstTest() {
+	  
+	  char[][]list= {
+			  {'e','e','e','d','e'},
+			  {'a','m','c','n','c'},
+	  		  {'a','t','m','b','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  
+ Search search = new DownForwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownForwardSearch) search).search(0);
+	  
+	  
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  assertEquals(0,positions[0]);
+	  
+  }
+  
+  
+  @Test 
+  public void DownForwardSearchSecondTest() {
+	  
+	  char[][]list= {
+			  {'e','e','e','d','e'},
+			  {'a','m','m','n','c'},
+	  		  {'a','t','m','m','f'},
+			  {'a','e','x','c','a'}, 
+	  };
+	  
+ Search search = new DownForwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownForwardSearch) search).search(0);
+	  
+	  
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  assertEquals(1,positions[0]);
+	  
+  }
+  
+
+  @Test 
+  public void DownForwardSearchFailTest() {
+	  
+	  char[][]list= {
+			  {'e','e','e','d','e'},
+			  {'a','m','m','n','c'},
+	  		  {'a','t','m','m','f'},
+			  {'a','e','x','c','t'}, 
+	  };
+	  
+ Search search = new DownForwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownForwardSearch) search).search(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  assertEquals(-1,positions[0]);
+	  
+  }
   
 }
