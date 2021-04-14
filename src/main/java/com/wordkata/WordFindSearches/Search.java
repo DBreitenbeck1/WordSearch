@@ -38,7 +38,7 @@ public abstract class Search {
 				break;
 			}
 		}
-		this.ypos = pos;
+		this.xpos = pos;
 	}
 	
 	public int searchLetter(int pos, char[]list, int let) {
@@ -70,11 +70,19 @@ public abstract class Search {
 		}
 		return match;
 	}
-
 	
 	public void findList(int row) {
 		this.list=field[row];
-		setXpos(row);
+		setYpos(row);
+	}
+	
+	
+	public String[] givePositions(int x1, int y1, int x2, int y2) {
+		
+		String startPos = String.valueOf(x1) + "," + String.valueOf(y1);
+		String endPos = String.valueOf(x2) + "," + String.valueOf(y2);
+		String [] positions = {startPos, endPos};
+		return positions;
 	}
 	
 	public void setXpos(int row) {
@@ -95,6 +103,10 @@ public abstract class Search {
 	
 	public char[] getList() {
 		return list;
+	}
+	
+	public char[][] getField(){
+		return field;
 	}
 	
 	

@@ -1,14 +1,14 @@
 package com.wordkata.WordFindSearches;
 
-public class BackwardSearch extends Search {
+public class UpSearch extends Search {
 
-	public BackwardSearch(char[][] field, String word) {
+	public UpSearch(char[][] field, String word) {
 		super(field, word);
 		// TODO Auto-generated constructor stub
 	}
-
-
 	
+	
+
 	public int[] search(int row) {
 		findList(row);
 		findFirstLetter(list,0);
@@ -19,41 +19,41 @@ public class BackwardSearch extends Search {
     	int letter = 0;
     	int firstLetterPos=0;
     	
-    	while (xpos!=-1) {
-    		
-    	firstLetterPos=xpos+1;
+
     	
-		for(int i = xpos; i>=0;i--) {
-			int ans=searchLetter(i, list, letter);
+    
+    	while (this.xpos!=-1) {
+    		firstLetterPos=xpos+1;
+    	
+    		for(int i = ypos; i>-1;i--) {
+    			int ans=searchLetter(xpos, field[i], letter);
 				if(ans !=-1) {
-					positions[letter] = ans;
-		    		addLetter(list[ans], letter);
+					positions[letter] = i;
+		    		addLetter(field[i][ans], letter);
 		    		letter++;
 		    			if (checkLetters()) {
-		    			co[0]=positions[0];
-		    			co[1]=positions[positions.length-1];       
-						return co;
-						}
-		    			
+			    			co[0]=positions[0];
+			    			co[1]=positions[positions.length-1];       
+							return co;
+						}	
 		    		}
 	    		else{	
 	    			clearLetters();
 	    			letter=0;
 	    			positions = new int[letters.length]; 
-	    			findFirstLetter(list,firstLetterPos);
-					}	
+				}	
 			}
+    		findFirstLetter(list,firstLetterPos);
     	}
     	positions[0] = -1;
 		return positions;
-	
 		
 	}
+	
+	
 	
 	public char[] getList() {
 		return this.list;
 	}
-	
-	
-	
+
 }

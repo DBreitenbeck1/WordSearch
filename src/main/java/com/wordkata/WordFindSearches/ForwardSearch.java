@@ -20,9 +20,9 @@ public class ForwardSearch extends Search {
 		int [] positions = new int[letters.length]; 
     	int letter = 0;
     	
-    	while (this.ypos!=-1) {
+    	while (this.xpos!=-1) {
     		
-    		for(int i = ypos; i<list.length;i++) {
+    		for(int i = xpos; i<list.length;i++) {
     			int ans=searchLetter(i, list, letter);
 				if(ans !=-1) {
 					positions[letter] = ans;
@@ -44,9 +44,10 @@ public class ForwardSearch extends Search {
     	}
     	positions[0] = -1;
 		return positions;
-	
 		
 	}
+	
+	
 	
 	public char[] getList() {
 		return this.list;
