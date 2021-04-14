@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import org.junit.Test;
 
 import com.wordkata.WordFindSearches.BackwardSearch;
+import com.wordkata.WordFindSearches.DownSearch;
 import com.wordkata.WordFindSearches.ForwardSearch;
 import com.wordkata.WordFindSearches.Search;
 import com.wordkata.WordFindSearches.UpSearch;
@@ -576,5 +577,77 @@ public class AppTest
 	  
   }
     
+
+  @Test
+  public void downSearchObjectFirstTest() {
+	  char[][]list= {
+			  {'a','m','e','b'},
+			  {'a','m','m','b'},
+	  		  {'a','m','m','b'},
+			  {'a','e','a','b'}
+	  };
+	  
+	  Search search = new DownSearch(list,"emma");
+	  
+	  int[] positions = ((DownSearch) search).search(0);
+	  
+	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
+		
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+	  
+	  assertEquals("2,0",coords[0]);
+	  
+  }
+    
+  
+
+  @Test
+  public void downSearchObjectSecondTest() {
+	  char[][]list= {
+			  {'e','e','e','b'},
+			  {'a','m','m','b'},
+	  		  {'a','m','m','b'},
+			  {'a','e','a','b'}
+	  };
+	  
+	  Search search = new DownSearch(list,"emma");
+	  
+	  int[] positions = ((DownSearch) search).search(0);
+	  
+	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
+		
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+	  
+	  assertEquals("2,0",coords[0]);
+	  
+  }
+  
+
+  @Test
+  public void downSearchObjectFailTest() {
+	  char[][]list= {
+			  {'e','e','e','b'},
+			  {'a','m','m','b'},
+			  {'a','e','a','b'}
+	  };
+	  
+	  Search search = new DownSearch(list,"emma");
+	  
+	  int[] positions = ((DownSearch) search).search(0);
+	  
+	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
+		
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+	  
+	  assertEquals(-1,positions[0]);
+	  
+  }
+  
   
 }
