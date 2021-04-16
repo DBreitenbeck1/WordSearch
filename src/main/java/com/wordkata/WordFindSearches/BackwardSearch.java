@@ -14,10 +14,17 @@ public class BackwardSearch extends Search {
 		findFirstLetter(list,0);
 
 		//System.out.println("ypos "+ypos);
-		int[] co = new int[2];
-		int [] positions = new int[letters.length]; 
+		int[] co = new int[4];
     	int letter = 0;
     	int firstLetterPos=0;
+    	
+    	int [] ypositions = new int[letters.length]; 
+		int [] xpositions = new int[letters.length]; 
+		for(int i =0; i<ypositions.length;i++){
+    		ypositions[i]=row;
+    	}
+    	
+    	
     	
     	while (xpos!=-1) {
     		
@@ -26,12 +33,14 @@ public class BackwardSearch extends Search {
 		for(int i = xpos; i>=0;i--) {
 			int ans=searchLetter(i, list, letter);
 				if(ans !=-1) {
-					positions[letter] = ans;
+					xpositions[letter] = ans;
 		    		addLetter(list[ans], letter);
 		    		letter++;
 		    			if (checkLetters()) {
-		    			co[0]=positions[0];
-		    			co[1]=positions[positions.length-1];       
+		    			co[0]=xpositions[0];
+		    			co[1]=ypositions[0];    
+		    			co[2]=xpositions[xpositions.length-1];
+		    			co[3]=ypositions[ypositions.length-1];       
 						return co;
 						}
 		    			
@@ -39,7 +48,7 @@ public class BackwardSearch extends Search {
 	    		else{	
 	    			clearLetters();
 	    			letter=0;
-	    			positions = new int[letters.length]; 
+	    			xpositions = new int[letters.length]; 
 	    			findFirstLetter(list,firstLetterPos);
 					}	
 			}

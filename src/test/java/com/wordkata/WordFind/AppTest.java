@@ -16,6 +16,7 @@ import com.wordkata.WordFindSearches.UpForwardSearch;
 import com.wordkata.WordFindSearches.UpBackwardSearch;
 import com.wordkata.WordFindSearches.DownBackwardSearch;
 import com.wordkata.WordFindSearches.UpSearch;
+import com.wordkata.WordFind.WordFinder;
 
 /**
  * Unit test for simple App.
@@ -106,25 +107,25 @@ public class AppTest
   
   @Test
   public void forwardSearchObjectFirstPos() {
-	  char[][] list={{'1'},{'a','b','c', 'e','m','m','a'}};
+	  char[][] list={{'a','b','c', 'e','m','m','a'}};
 	  Search search = new ForwardSearch(list,"emma");
 	 // System.out.println(search.getLetters());
 
-	  int[] positions = ((ForwardSearch) search).search(1);
+	  int[] positions = ((ForwardSearch) search).search(0);
 	  
 	  assertEquals(3,positions[0]);
   }
   
   @Test
   public void forwardSearchObjectSecondPos() {
-	  char[][] list={{'1'},{'a','b','c', 'e','m','m','a'}};
+	  char[][] list={{'a','b','c', 'e','m','m','a'}};
 	  Search search = new ForwardSearch(list,"emma");
 	  
 
-	  int[] positions = ((ForwardSearch) search).search(1);
+	  int[] positions = ((ForwardSearch) search).search(0);
 	  
 	  
-	  assertEquals(6,positions[1]);
+	  assertEquals(6,positions[2]);
   }
   
   @Test
@@ -180,22 +181,22 @@ public class AppTest
   
   @Test
   public void backwardSearchSecondPos() {
-	  char[][] list={{'1'},{'a','b','c', 'a','m','m','e','t'}};
+	  char[][] list={{'a','b','c', 'a','m','m','e','t'}};
 	  Search search = new BackwardSearch(list,"emma");
 	 // System.out.println(search.getLetters());
 
-	  int[] positions = ((BackwardSearch) search).search(1);
+	  int[] positions = ((BackwardSearch) search).search(0);
 	  
-	  assertEquals(3,positions[1]);
+	  assertEquals(3,positions[2]);
   }
   
   @Test
   public void backwardSearchObjectSecondPass() {
-	  char[][] list={{'1'},{'a','m','e','b','c','a','m','m','e','t'}};
+	  char[][] list={{'a','m','e','b','c','a','m','m','e','t'}};
 	  Search search = new BackwardSearch(list,"emma");
 	 // System.out.println(search.getLetters());
 
-	  int[] positions = ((BackwardSearch) search).search(1);
+	  int[] positions = ((BackwardSearch) search).search(0);
 	  
 	  assertEquals(8,positions[0]);
   }
@@ -203,7 +204,7 @@ public class AppTest
   
   @Test
   public void backwardSearchObjectFail() {
-	  char[][] list={{'a','m','e','b'},{'a','m','e','b'},{'a','m','e','b','c','a','m','e','t'}};
+	  char[][] list={{'a','m','e','b'},{'a','m','e','b','e'},{'a','m','e','b','c','a','m','e','t'}};
 	  Search search = new BackwardSearch(list,"emma");
 	 // System.out.println(search.getLetters());
 	  int[] positions = ((BackwardSearch) search).search(1);
@@ -223,14 +224,12 @@ public class AppTest
 	  Search search = new UpSearch(list,"ema");
 	  
 	  int[] positions = ((UpSearch) search).search(2);
-	  
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
 		/*	
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
 	  */
-	  assertEquals("2,0",coords[1]);
+	  assertEquals(0,positions[3]);
 	  
   }
   
@@ -246,14 +245,12 @@ public class AppTest
 	  Search search = new UpSearch(list,"emma");
 	  
 	  int[] positions = ((UpSearch) search).search(3);
-	  
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		/*
+	  	/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
 	  */
-	  assertEquals("2,0",coords[1]);
+	  assertEquals(2,positions[0]);
 	  
   }
     
@@ -272,13 +269,12 @@ public class AppTest
 	  
 	  int[] positions = ((UpSearch) search).search(4);
 	   
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
 		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
 	  */
-	  assertEquals("2,1",coords[1]);
+	  assertEquals(1,positions[3]);
 	  
   }
   
@@ -313,14 +309,13 @@ public class AppTest
 	  Search search = new DownSearch(list,"emma");
 	  
 	  int[] positions = ((DownSearch) search).search(0);
-	  
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		/*
+	
+	  /*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
 	 */ 
-	  assertEquals("2,0",coords[0]);
+	  assertEquals(3,positions[3]);
 	  
   }
     
@@ -338,14 +333,12 @@ public class AppTest
 	  Search search = new DownSearch(list,"emma");
 	  
 	  int[] positions = ((DownSearch) search).search(0);
-	  
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
 		/*
 	  for(String c: coords) {
 	  System.out.println(c);
 	}
 	  */
-	  assertEquals("2,0",coords[0]);
+	  assertEquals(3,positions[3]);
 	  
   }
   
@@ -747,8 +740,69 @@ public class AppTest
 	  assertEquals(-1,positions[0]);
 	  
   }
-  
-  
-  
+
+  @Test
+  public void SearchFactoryTest() {
+	  char[][]list= {
+			  {'e','m','m','a','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','e','x','e','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	  Search search = WF.searchFactory(1);  
+			 
+			  
+	  int[] positions = search.search(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	   */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(0,positions[0]);
+	  
+  }
+
+
+  @Test
+  public void SearchScrollFirstTest() {
+	  char[][]list= {
+			  {'e','m','m','a','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','e','x','e','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	 
+			  
+			  
+	  int[] positions = WF.searchScroller(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	 */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(0,positions[0]);
+	  	  
+	  
+  }
   
 }

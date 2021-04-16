@@ -16,6 +16,10 @@ public abstract class Search {
 		this.foundLetters=new char[letters.length];
 	}
 	
+	public int[] search(int row) {
+		int[] positions = new int [4];
+		return positions;
+	}
 	
 	
 	public int[] find() {

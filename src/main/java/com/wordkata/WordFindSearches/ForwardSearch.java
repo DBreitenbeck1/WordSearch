@@ -12,35 +12,51 @@ public class ForwardSearch extends Search {
 	
 	
 	public int[] search(int row) {
+		
 		findList(row);
 		findFirstLetter(list,0);
 
-		//System.out.println("ypos "+ypos);
-		int[] co = new int[2];
-		int [] positions = new int[letters.length]; 
+	//	System.out.println("ypos "+ypos);
+		int[] co = new int[4];
     	int letter = 0;
+    	int [] ypositions = new int[letters.length]; 
+		int [] xpositions = new int[letters.length]; 
+		for(int i =0; i<ypositions.length;i++){
+    		ypositions[i]=row;
+    	}
+    	
+  //  	System.out.println(foundLetters.length);
+	//	System.out.println(letters.length);
     	
     	while (this.xpos!=-1) {
-    		
+    	//	System.out.println("xpos "+xpos);
     		for(int i = xpos; i<list.length;i++) {
     			int ans=searchLetter(i, list, letter);
 				if(ans !=-1) {
-					positions[letter] = ans;
+					xpositions[letter] = ans;
 		    		addLetter(list[ans], letter);
-		    		letter++;
+		    		
 		    			if (checkLetters()) {
-			    			co[0]=positions[0];
-			    			co[1]=positions[positions.length-1];       
+		    			//	System.out.println(checkLetters());
+		    			//	System.out.println(xpositions.length);
+		    			//	System.out.println(co.length);
+			    			co[0]=xpositions[0];
+			    			co[1]=ypositions[0];
+			    			co[2]=xpositions[xpositions.length-1]; 
+			    			co[3]=ypositions[ypositions.length-1]; 
+			    			
 							return co;
 						}	
+		    			letter++;
 		    		}
 	    		else{	
 	    			clearLetters();
 	    			letter=0;
-	    			positions = new int[letters.length]; 
+	    			xpositions = new int[letters.length]; 
 	    			findFirstLetter(list,i);
 				}	
 			}
+    		xpos=-1;
     	}
     	for(int i =0; i<co.length;i++){
     		co[i]=-1;
