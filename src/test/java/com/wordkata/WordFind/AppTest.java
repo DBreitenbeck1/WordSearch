@@ -157,14 +157,9 @@ public class AppTest
 	 // System.out.println(search.getLetters());
 
 	  int[] positions = ((ForwardSearch) search).search(1);
-	  String [] coords = search.givePositions(positions[0], search.getYpos(), positions[1], search.getYpos());
-	/*
-	  for(String c: coords) {
-	  System.out.println(c);
-	}
-	  */
+	
 	  
-	  assertEquals("5,1",coords[0]);
+	  assertEquals(5,positions[0]);
   }
   
   
@@ -355,12 +350,7 @@ public class AppTest
 	  
 	  int[] positions = ((DownSearch) search).search(0);
 	  
-	  String [] coords = search.givePositions(search.getXpos(),positions[0], search.getXpos(),positions[1]);
-		/*
-	  for(String c: coords) {
-	  System.out.println(c);
-	}
-	  */
+	 
 	  assertEquals(-1,positions[0]);
 	  
   }
@@ -474,14 +464,7 @@ public class AppTest
 	  int[] positions = ((DownForwardSearch) search).search(0);
 	  
 	  
-	  String [] coords = search.getCoordinates();
-	  for(String c: coords) {
-	  System.out.println(c);
-	}
-
-	  for(int p:positions) {
-		  System.out.println(p);
-	  }
+	
 	//  System.out.println(search.getXpos());
 	  
 	  
@@ -505,14 +488,7 @@ public class AppTest
 	  int[] positions = ((DownForwardSearch) search).search(0);
 	  
 	  
-	  String [] coords = search.getCoordinates();
-	  for(String c: coords) {
-	  System.out.println(c);
-	}
-
-	  for(int p:positions) {
-		  System.out.println(p);
-	  }
+	
 	//  System.out.println(search.getXpos());
 	  
 	  
@@ -742,38 +718,6 @@ public class AppTest
   }
 
   @Test
-  public void SearchFactoryTest() {
-	  char[][]list= {
-			  {'e','m','m','a','e'},
-			  {'a','m','m','m','c'},
-	  		  {'a','c','m','w','f'},
-			  {'a','e','x','e','t'}, 
-	  };
-	  
-	  WordFinder WF = new WordFinder(list, "emma");
-	  Search search = WF.searchFactory(1);  
-			 
-			  
-	  int[] positions = search.search(0);
-	  
-	  /*
-	  String [] coords = search.getCoordinates();
-	  for(String c: coords) {
-	  System.out.println(c);
-	}
-
-	  for(int p:positions) {
-		  System.out.println(p);
-	  }
-	   */
-	//  System.out.println(search.getXpos());
-	  
-	  assertEquals(0,positions[0]);
-	  
-  }
-
-
-  @Test
   public void SearchScrollFirstTest() {
 	  char[][]list= {
 			  {'e','m','m','a','e'},
@@ -800,9 +744,280 @@ public class AppTest
 	 */
 	//  System.out.println(search.getXpos());
 	  
-	  assertEquals(0,positions[0]);
-	  	  
+	  assertEquals(0,positions[0]); 	  
 	  
   }
+  
+  @Test
+  public void SearchScrollSecondTest() {
+	  char[][]list= {
+			  {'e','m','e','a','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	 
+			  
+			  
+	  int[] positions = WF.searchScroller(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	 */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(0,positions[0]); 	  
+	  
+  }
+  
+
+  @Test
+  public void SearchScrollThirdTest() {
+	  char[][]list= {
+			  {'a','m','m','e','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	 
+			  
+			  
+	  int[] positions = WF.searchScroller(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	 */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(3,positions[0]); 	  
+  }
+  
+  
+  @Test
+  public void SearchScrollFourthTest() {
+	  char[][]list= {
+			  {'a','d','m','e','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	 
+			  
+			  
+	  int[] positions = WF.searchScroller(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	 */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(3,positions[0]); 	  
+  }
+  
+  @Test
+  public void SearchScrollFailTest() {
+	  char[][]list= {
+			  {'a','d','m','e','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','s','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  
+	  WordFinder WF = new WordFinder(list, "emma");
+	 
+			  
+			  
+	  int[] positions = WF.searchScroller(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	 */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(-1,positions[0]); 	  
+  }
+  
+  
+  @Test
+  public void WordFinderFirstTest() {
+	  char[][]list= {
+			  {'a','d','m','e','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','s','f'},
+			  {'a','e','x','e','t'}, 
+	  };
+	  WordFinder WF = new WordFinder(list, "emma");
+	  
+	  
+	  int[] positions =  WF.scrollField();
+			  //WF.searchScroller(3); 
+	  
+	  assertEquals(3,positions[0]);
+	  
+  }
+  
+
+  @Test
+  public void WordFinderSecondTest() {
+	  char[][]list= {
+			  {'a','d','m','e','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  WordFinder WF = new WordFinder(list, "emma");
+	  
+	  
+	  int[] positions =  WF.scrollField();
+			  //WF.searchScroller(3); 
+	  
+	  assertEquals(3,positions[0]);
+	  
+  }
+  
+  
+  @Test
+  public void WordFinderThirdTest() {
+	  char[][]list= {
+			  {'a','d','m','d','e'},
+			  {'a','a','m','m','e'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  WordFinder WF = new WordFinder(list, "emma");
+	  
+	  
+	  int[] positions =  WF.scrollField();
+			  //WF.searchScroller(3); 
+	 /*
+	  for(int i=0; i<positions.length;i++) {
+		  System.out.print(positions[i] +", ");
+	  }
+	  */
+	  
+	  assertEquals(1,positions[1]);
+	  
+  }
+  
+  @Test
+  public void WordFinderFailTest() {
+	  char[][]list= {
+			  {'a','d','m','d','e'},
+			  {'a','r','m','m','e'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  WordFinder WF = new WordFinder(list, "emma");
+	  
+	  
+	  int[] positions =  WF.scrollField();
+			  //WF.searchScroller(3); 
+	  /*
+	  for(int i=0; i<positions.length;i++) {
+		  System.out.print(positions[i] +", ");
+	  }
+	  */
+	  
+	  
+	  assertEquals(-1,positions[1]);
+	  
+  }
+  
+  @Test
+  public void getCoordsFirstTest() {
+	  char[][]list= {
+			  {'a','d','m','d','e'},
+			  {'a','a','m','m','e'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  WordFinder WF = new WordFinder(list, "Emma");
+	  
+	  
+	  int[] positions =  WF.scrollField();
+			  //WF.searchScroller(3); 
+	 /*
+	  for(int i=0; i<positions.length;i++) {
+		  System.out.print(positions[i] +", ");
+	  }
+	  */
+	 // System.out.println(WF.getCoordinates());
+	  
+	  assertEquals(1,positions[1]);
+	  
+  }
+  
+  @Test
+  public void findWordTest() {
+	  char[][]list= {
+			  {'a','d','m','d','e'},
+			  {'a','a','m','m','e'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','a','t'}, 
+	  };
+	  String[] words = {"Emma"};
+	  WordSearch search = new WordSearch(words, list);
+	  String[] foundWords = search.search();
+	  System.out.println(foundWords[0]);
+	  
+	  assertEquals("Emma: 4,1, 1,1", foundWords[0]);
+	  
+  }
+  
+
+  @Test
+  public void findWordsSecondTest() {
+	  char[][]list= {
+			  {'p','d','m','d','e','n'},
+			  {'e','a','m','m','c','i'},
+	  		  {'t','c','m','m','f','b'},
+			  {'e','a','x','a','t','s'}, 
+			  {'r','t','c','i','f','g'}
+	  };
+	  String[] words = {"Emma", "Peter", "Nibs","Fred"};
+	  WordSearch search = new WordSearch(words, list);
+	  String[] foundWords = search.search();
+	  for(int i=0;i<foundWords.length;i++) {
+	  System.out.println(foundWords[i]);
+	  }
+	  
+	  assertEquals("Emma: 4,0 : 1,3", foundWords[0]);
+	  
+  }
+  
   
 }

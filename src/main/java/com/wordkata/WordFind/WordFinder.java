@@ -16,6 +16,7 @@ import com.wordkata.WordFindSearches.UpSearch;
 public class WordFinder {
 	String word;
 	char[][] field;
+	String coordinates = "Not Found";
 	Search[]searches = new Search[8];
 	
 	WordFinder(char[][]field, String word){
@@ -31,11 +32,25 @@ public class WordFinder {
 	}
 	
 	public int[] scrollField() {
+		int[] positions = {-1,-1,-1,-1};
+		int[] newpositions = {-1,-1,-1,-1};
+		//System.out.println(field.length);
 		for (int i = 0;i<field.length;i++) {
-			
+		//	System.out.println(i);
+			newpositions=searchScroller(i);
+			/*
+			for(int j=0;j<newpositions.length;j++) {
+				System.out.print(newpositions[j]+", ");
+			//	System.out.print(positions[j]+", ");
+			}
+			*/
+			//System.out.print(checkPositions(positions, newpositions));
+			if(checkPositions(positions, newpositions)) {
+				setCoordintates(givePositions(newpositions));
+				return newpositions;
+			}
 		}
-		
-		return null;
+		return positions;
 	}
 	
 	public int[] searchScroller(int i) {
@@ -60,35 +75,27 @@ public class WordFinder {
 		this.searches[7] =	new DownBackwardSearch(field, word);
 	}
 	
-	
-	public Search searchFactory(int s) {
-		System.out.println("SearchFactory " + s);
-		switch(s) {
-		case 1:
-			System.out.println("ForwardSearch" );
-			return new ForwardSearch(field, word);
-		case 2:
-			System.out.println("BackwardSearch" );
-			return new BackwardSearch(field, word);
-		case 3:
-			System.out.println("UpSearch" );
-			return new UpSearch(field, word);
-		case 4:
-			System.out.println("DownSearch" );
-			return new DownSearch(field, word);
-		case 5:
-			System.out.println("UpFowardSearch" );
-			return new UpForwardSearch(field, word);
-		case 6:
-			return new DownForwardSearch(field, word);
-		case 7:
-			return new UpBackwardSearch(field, word);
-		case 8:
-			return new DownBackwardSearch(field, word);
-		default:
-			return new ForwardSearch(field, word);
-		}
+	private boolean checkPositions(int[]pos, int[] newpos) {
+		return pos[0]!=newpos[0];
 	}
+	
+public String[] givePositions(int[] positions){
+		String startPos = String.valueOf(positions[0]) + "," + String.valueOf(positions[1]);
+		String endPos = String.valueOf(positions[2]) + "," + String.valueOf(positions[3]);
+		String [] coords = {startPos, endPos};
+		return coords;
+	}
+	
+	public void setCoordintates(String[] coords) {
+		String c = coords[0] +" : " + coords[1];
+		
+		this.coordinates=c;
+	}
+	
+	public String getCoordinates() {
+		return coordinates;
+	}
+	
 	
 	public String getWord() {
 		return word;

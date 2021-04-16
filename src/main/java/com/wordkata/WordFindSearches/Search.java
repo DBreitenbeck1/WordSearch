@@ -82,21 +82,7 @@ public abstract class Search {
 	}
 	
 	
-	public String[] givePositions(int x1, int y1, int x2, int y2) {
-		
-		String startPos = String.valueOf(x1) + "," + String.valueOf(y1);
-		String endPos = String.valueOf(x2) + "," + String.valueOf(y2);
-		String [] positions = {startPos, endPos};
-		return positions;
-	}
 	
-	public void setCoordintates(String[] coords) {
-		this.coordinates=coords;
-	}
-	
-	public String[] getCoordinates() {
-		return coordinates;
-	}
 	
 	public void setXpos(int row) {
 		this.xpos=row;

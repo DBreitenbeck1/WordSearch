@@ -31,14 +31,7 @@ public class UpBackwardSearch extends Search {
 		    		letter++;
 		    		//System.out.println(this.foundLetters);
 		    			if (checkLetters()) {
-		    				this.setCoordintates(
-		    						givePositions(
-		    						xpositions[0],
-		    						ypositions[0],
-		    						xpositions[xpositions.length-1],
-		    						ypositions[ypositions.length-1]
-		    					)
-		    				);
+		    				
 			    			co[0]=xpositions[0];
 			    			co[1]=ypositions[0];
 			    			co[2]=xpositions[xpositions.length-1];
@@ -61,7 +54,7 @@ public class UpBackwardSearch extends Search {
     	for(int i =0; i<co.length;i++){
     		co[i]=-1;
     	}
-    	this.setCoordintates(givePositions(-1,-1,-1,-1));
+    	
 		return co;
 		
 	}

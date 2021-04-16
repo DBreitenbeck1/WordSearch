@@ -61,7 +61,7 @@ public class ForwardSearch extends Search {
     	for(int i =0; i<co.length;i++){
     		co[i]=-1;
     	}
-    	this.setCoordintates(givePositions(-1,-1,-1,-1));
+
 		return co;
 		
 	}
