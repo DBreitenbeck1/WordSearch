@@ -1,8 +1,8 @@
 package com.wordkata.WordFindSearches;
 
-public class DownForwardSearch extends Search {
+public class UpBackwardSearch extends Search {
 
-	public DownForwardSearch(char[][] field, String word) {
+	public UpBackwardSearch(char[][] field, String word) {
 		super(field, word);
 		// TODO Auto-generated constructor stub
 	}
@@ -22,7 +22,7 @@ public class DownForwardSearch extends Search {
     	while (this.xpos!=-1) {
     		firstLetterPos=xpos+1;
     		xTraject=xpos;
-    		for(int i = ypos; i<field.length;i++) {
+    		for(int i = ypos; i>-1;i--) {
     			int ans=searchLetter(xTraject, field[i], letter);
 				if(ans !=-1) {
 					ypositions[letter] = i;
@@ -45,8 +45,8 @@ public class DownForwardSearch extends Search {
 			    			co[3]=ypositions[ypositions.length-1];       
 							return co;
 						}
-		    	xTraject=(xTraject+1<list.length)? xTraject+1:xTraject;		
-		    	
+		    	xTraject=(xTraject-1>-1)? xTraject-1:xTraject;		
+		    		    
 				}else{	
 	    			clearLetters();
 	    			letter=0;
@@ -71,6 +71,5 @@ public class DownForwardSearch extends Search {
 	public char[] getList() {
 		return this.list;
 	}
-	
 	
 }

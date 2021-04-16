@@ -2,6 +2,7 @@ package com.wordkata.WordFind;
 
 import static org.junit.Assert.*;
 
+
 import java.nio.charset.Charset;
 
 import org.junit.Test;
@@ -12,6 +13,8 @@ import com.wordkata.WordFindSearches.DownSearch;
 import com.wordkata.WordFindSearches.ForwardSearch;
 import com.wordkata.WordFindSearches.Search;
 import com.wordkata.WordFindSearches.UpForwardSearch;
+import com.wordkata.WordFindSearches.UpBackwardSearch;
+import com.wordkata.WordFindSearches.DownBackwardSearch;
 import com.wordkata.WordFindSearches.UpSearch;
 
 /**
@@ -74,288 +77,6 @@ public class AppTest
     }
     
     
-    @Test
-    public void firstTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int position = -1; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		position = ans;
-    		}
-    	}
-    	assertEquals(4, position);
-    	
-    }
-    
-    @Test
-    public void secondTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[4]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		letter++;
-    		}
-    	}
-    	assertEquals(4, positions[0]);
-    }
-    
-    
-    
-    @Test
-    public void thirdTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[4]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		letter++;
-    		}
-    	}
-    	assertEquals(5, positions[1]);
-    }
-    
-    @Test //search letters adds to 'found letters'
-    public void fourthTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[4]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		LF.addLetter(list[ans], letter);
-    		letter++;
-    		}
-    	}
-    	assertEquals('e', LF.getFoundLetters()[0]);
-    }
-    
-   
-    
-    @Test //Search Letter finds all letters
-    public void sixthTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m','m','a'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[LF.getLetters().length]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-	    		positions[letter] = ans;
-	    		LF.addLetter(list[ans], letter);
-	    		letter++;
-    		}
-    	}
-    	assertEquals('a', LF.getFoundLetters()[3]);
-    }
-    
-    @Test //Check Letters True
-    public void seventhTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m','m','a'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[LF.getLetters().length]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		LF.addLetter(list[ans], letter);
-    		letter++;
-    		}
-    	}
-    	assertTrue(LF.checkLetters());
-    }
-    
-    @Test //check Letters False
-    public void eightTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m','a'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[LF.getLetters().length]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		LF.addLetter(list[ans], letter);
-    		letter++;
-    		}
-    	}
-    	assertFalse(LF.checkLetters());
-    }
-    
-    
-    @Test //Clear Letters
-    public void ninthTestFindLet() {
-    	char[] list = {'a', 'b','c','d','e','m','m','t','a'};
-    	LetterFinder LF = new LetterFinder("emma");
-    	int [] positions = new int[LF.getLetters().length]; 
-    	int letter = 0;
-    	for(int i=0; i<list.length;i++) {
-    		int ans=LF.searchLetter(i, list,letter);
-    		if(ans!=-1) {
-    		positions[letter] = ans;
-    		LF.addLetter(list[ans], letter);
-    		letter++;
-    		} else if (LF.getFoundLetters().length!=0) {
-    			LF.clearLetters();
-    		}
-    	}
-    	assertFalse(LF.checkLetters());
-    }
-    
-    
-   
-    
-    
-  @Test //first test Forward
-  public void firstTestWord() {
-	char[] list = {'a', 'b','c','d','e','m','m','a'};
-  	LetterFinder LF = new LetterFinder("emma");
-  	int [] positions = LF.wordForward(list, 4);
- 
-  	assertEquals(4, positions[0]);
-  }
-  
-  @Test //assert failure
-  public void secondTestWord() {
-	char[] list = {'a', 'b','c','d','e','m','m', 't','d'};
-  	LetterFinder LF = new LetterFinder("emma");
-  	int [] positions = LF.wordForward(list, 4);
-  	
-  	assertTrue(positions[0]== positions[positions.length-1]);
-  	//^Way to test if the array has any content
-  }
-  
-  
-  @Test //test that it breaks out of the loop
-  public void thirdTestWord() {
-	char[] list = {'a', 'b','c','d','e','m','m','a','t'};
-  	LetterFinder LF = new LetterFinder("emma");
-  	int [] positions = LF.wordForward(list, 4);
-  	/*for (int p: positions) {
-  		System.out.println(p);
-  	}*/
-  	assertFalse(positions[0]== positions[positions.length-1]);
-  }
-  
-  @Test //test inside a for loop
-  public void fourthTestWord() {
-	char[] list = {'a', 'b','c','d','e','m','m','a','t'};
-  	LetterFinder LF = new LetterFinder("emma");
-	int [] positions = new int[LF.getLetters().length];
-	int count=0;
-  	for(int i = 0; i<list.length;i++) {
-  
-  		if(LF.checkLetters()!=true) {
-  		positions = LF.wordForward(list, i);
-  		} else {
-  			break;
-  		}
-		
-  	}
-  	/*for (int p: positions) {
-  		System.out.println(p);
-  	}*/
-  	assertFalse(positions[0]== positions[positions.length-1]);
-  }
-  
-  
-  @Test //fail inside a for loop
-  public void fifthTestWord() {
-	char[] list = {'a', 'b','c','d','e','m','m','d', 'a','t'};
-  	LetterFinder LF = new LetterFinder("emma");
-	int [] positions = new int[LF.getLetters().length];
-	int count=0;
-  	for(int i = 0; i<list.length;i++) {
-  
-  		if(LF.checkLetters()!=true) {
-  		positions = LF.wordForward(list, i);
-  		} else {
-  			break;
-  		}
-		
-  	}
-  	/*for (int p: positions) {
-  		System.out.println(p);
-  	}*/
-  	assertTrue(positions[0]== positions[positions.length-1]);
-  }
-  
-  
-  @Test //word backwards
-  public void firstTestBackwards() {
-		char[] list = {'a', 'b','c','d','a','m','m','e'};
-	  	LetterFinder LF = new LetterFinder("emma");
-	  	int [] positions = LF.wordBackward(list, 7);
-	 
-	  	assertEquals(4, positions[3]);
-  }
-  
-  @Test //backwards failure
-  public void secondTestBackwards() {
-		char[] list = {'a', 'b','c','d','a', 'f','m','m','e'};
-	  	LetterFinder LF = new LetterFinder("emma");
-	  	int [] positions = LF.wordBackward(list, 8);
-	 
-	  	assertTrue(positions[0]== positions[positions.length-1]);
-  }
-  
-  @Test //backwards inside loop
-  public void thirdTestBackwards() {
-	  char[] list = {'a', 'b','c','a','m','m','e', 'a','t'};
-	  	LetterFinder LF = new LetterFinder("emma");
-		int [] positions = new int[LF.getLetters().length];
-		int count=0;
-	  	for(int i = 0; i<list.length;i++) {
-	  		if(LF.checkLetters()!=true) {
-	  		positions = LF.wordBackward(list, i);
-	  		} else {
-	  			break;
-	  		}	
-	  	}
-	  	for (int p: positions) {
-	  	//	System.out.println(p);
-	  	}
-	  
-		assertEquals(6, positions[0]);
-  }
-  
-  
-  @Test //First Letter anchor
-  public void firstFirstLetter() {
-	  char[] list = {'a','b','c','a','m','m','e', 'a','t'};
-	  	LetterFinder LF = new LetterFinder("emma");
-		int [] positions = new int[LF.getLetters().length];
-		int count=0;
-	  	for(int i = 0; i<list.length;i++) {
-	  		int firstLetter = LF.firstLetter(i, list);
-	  		if (firstLetter!=-1) {
-	  			
-	  		if(LF.checkLetters()!=true) {
-	  		positions = LF.wordBackward(list, firstLetter);
-	  		} else {
-	  			break;
-	  		}	
-	  		}
-	  	}
-	  	for (int p: positions) {
-	  	//	System.out.println(p);
-	  	}
-	  
-		assertEquals(6, positions[0]);
-  }
-  
   @Test
   public void scrollField() {
 	  char[][] list={{'1', '2'},
@@ -837,5 +558,197 @@ public class AppTest
 	  assertEquals(-1,positions[0]);
 	  
   }
+  
+  @Test
+  public void UpBackwardSearchFirstTest() {
+	  char[][]list= {
+			  {'a','w','q','d','p'},
+			  {'a','m','m','n','c'},
+	  		  {'a','c','m','m','f'},
+			  {'a','e','x','e','t'}, 
+	  };
+	  
+	  Search search = new UpBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpBackwardSearch) search).search(3);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  
+	  assertEquals(3,positions[0]);
+	  
+  }
+  
+  
+
+  @Test
+  public void UpBackwardSearchSecondTest() {
+	  char[][]list= {
+			  {'a','w','q','d','p'},
+			  {'a','m','m','n','c'},
+	  		  {'a','m','m','m','f'},
+			  {'a','x','e','e','t'}, 
+	  };
+	  
+	  Search search = new UpBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpBackwardSearch) search).search(3);
+	  
+	  
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  
+	  assertEquals(3,positions[0]);
+	  
+  }
+  
+  @Test
+  public void UpBackwardSearchFailTest() {
+	  char[][]list= {
+			  {'a','w','q','d','p'},
+			  {'a','n','m','n','c'},
+	  		  {'a','m','m','m','f'},
+			  {'a','x','e','e','t'}, 
+	  };
+	  
+	  Search search = new UpBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((UpBackwardSearch) search).search(3);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  assertEquals(-1,positions[0]);
+	  
+  }
+  
+
+  @Test
+  public void DownBackwardSearchFirstTest() {
+	  char[][]list= {
+			  {'a','w','q','d','e'},
+			  {'a','g','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','a','x','e','t'}, 
+	  };
+	  
+	  Search search = new DownBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownBackwardSearch) search).search(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  
+	  
+	  assertEquals(4,positions[0]);
+	  
+  }
+  
+  
+
+  @Test
+  public void DownBackwardSearchSecondTest() {
+	  char[][]list= {
+			  {'a','w','e','d','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','a','x','e','t'}, 
+	  };
+	  
+	  Search search = new DownBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownBackwardSearch) search).search(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(4,positions[0]);
+	  
+  }
+  
+
+  @Test
+  public void DownBackwardSearchFailTest() {
+	  char[][]list= {
+			  {'a','w','e','d','e'},
+			  {'a','m','m','m','c'},
+	  		  {'a','c','m','w','f'},
+			  {'a','e','x','e','t'}, 
+	  };
+	  
+	  Search search = new DownBackwardSearch(list,"emma");
+	  
+	  int[] positions = ((DownBackwardSearch) search).search(0);
+	  
+	  /*
+	  String [] coords = search.getCoordinates();
+	  for(String c: coords) {
+	  System.out.println(c);
+	}
+
+	  for(int p:positions) {
+		  System.out.println(p);
+	  }
+	  */
+	//  System.out.println(search.getXpos());
+	  
+	  assertEquals(-1,positions[0]);
+	  
+  }
+  
+  
+  
   
 }
