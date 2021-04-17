@@ -18,7 +18,7 @@ public class ForwardSearch extends Search {
 
 	//	System.out.println("ypos "+ypos);
 		int[] co = new int[4];
-    	int letter = 0;
+    	int letter = 1;
     	int [] ypositions = new int[letters.length]; 
 		int [] xpositions = new int[letters.length]; 
 		for(int i =0; i<ypositions.length;i++){
@@ -31,10 +31,20 @@ public class ForwardSearch extends Search {
     	while (this.xpos!=-1) {
     	//	System.out.println("xpos "+xpos);
     		for(int i = xpos; i<list.length;i++) {
+    			
+    			//System.out.println("letter is: " +letter);
     			int ans=searchLetter(i, list, letter);
+    			//System.out.println("ans is: " +ans);
+    		
+    			//System.out.println("i is: " +i);
+    			
+    			//System.out.println("foundLetters: " +foundLetters);
 				if(ans !=-1) {
 					xpositions[letter] = ans;
 		    		addLetter(list[ans], letter);
+		    		for (int k=0;k<foundLetters.length;k++) {
+		    			System.out.println(foundLetters[k]);
+		    		}
 		    		
 		    			if (checkLetters()) {
 		    			//	System.out.println(checkLetters());
@@ -51,12 +61,16 @@ public class ForwardSearch extends Search {
 		    		}
 	    		else{	
 	    			clearLetters();
-	    			letter=0;
+	    			letter=1;
 	    			xpositions = new int[letters.length]; 
 	    			findFirstLetter(list,i);
+	    			xpositions[0]=xpos;
+	    		//	System.out.println("xpos is: " +xpos);
 				}	
+				//System.out.println("##");
 			}
     		xpos=-1;
+    		
     	}
     	for(int i =0; i<co.length;i++){
     		co[i]=-1;

@@ -162,6 +162,22 @@ public class AppTest
 	  assertEquals(5,positions[0]);
   }
   
+
+  @Test
+  public void forwardSearchObjectSecondTest() {
+	  char[][] list={{'a','e','m','f','d','e','m','m','a'}};
+	  Search search = new ForwardSearch(list,"emma");
+	 // System.out.println(search.getLetters());
+
+	  int[] positions = ((ForwardSearch) search).search(0);
+	  
+	  for(int i = 0; i<positions.length;i++) {
+		  System.out.println(positions[i]);
+	  }
+	  
+	  assertEquals(5,positions[0]);
+  }
+  
   
   @Test
   public void backwardSearchFirstPos() {
@@ -994,7 +1010,7 @@ public class AppTest
 	  String[] foundWords = search.search();
 	  System.out.println(foundWords[0]);
 	  
-	  assertEquals("Emma: 4,1, 1,1", foundWords[0]);
+	  assertEquals("Emma: 4,1 : 1,1", foundWords[0]);
 	  
   }
   

@@ -28,7 +28,10 @@ public class BackwardSearch extends Search {
     	
     	while (xpos!=-1) {
     		
+    	
     	firstLetterPos=xpos+1;
+    			
+    		//	(<list.length)?xpos+1:-1;
     	
 		for(int i = xpos; i>=0;i--) {
 			int ans=searchLetter(i, list, letter);
@@ -50,6 +53,7 @@ public class BackwardSearch extends Search {
 	    			letter=0;
 	    			xpositions = new int[letters.length]; 
 	    			findFirstLetter(list,firstLetterPos);
+	    			//xpositions[0]=xpos;
 					}	
 			}
     	}
