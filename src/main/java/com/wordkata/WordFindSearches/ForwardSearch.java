@@ -42,9 +42,7 @@ public class ForwardSearch extends Search {
 				if(ans !=-1) {
 					xpositions[letter] = ans;
 		    		addLetter(list[ans], letter);
-		    		for (int k=0;k<foundLetters.length;k++) {
-		    			System.out.println(foundLetters[k]);
-		    		}
+		    		
 		    		
 		    			if (checkLetters()) {
 		    			//	System.out.println(checkLetters());

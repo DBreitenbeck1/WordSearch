@@ -29,8 +29,8 @@ public abstract class Search {
 	}
 	
 	public int firstLetter(int pos, char[]list) {
-		System.out.println(pos);
-		System.out.println(list[pos]);
+	//	System.out.println(pos);
+	//	System.out.println(list[pos]);
 		int position=-1;
 		if (letters[0] == list[pos]) {
 			position=pos;	
